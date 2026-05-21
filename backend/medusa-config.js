@@ -36,7 +36,12 @@ module.exports = {
     database_url: process.env.DATABASE_URL,
     redis_url: process.env.REDIS_URL,
     database_extra:
-      { ssl: { rejectUnauthorized: false } },
+      { 
+        ssl: { rejectUnauthorized: false },
+        max: 10,
+        idleTimeoutMillis: 30000,
+        connectionTimeoutMillis: 10000,
+      },
     jwt_secret: process.env.JWT_SECRET || "supersecret",
     cookie_secret: process.env.COOKIE_SECRET || "supersecret",
     store_cors: process.env.STORE_CORS || "http://localhost:3001",

@@ -2,7 +2,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const services = ['payment-provider.js', 'notification.js', 'tax-provider.js'];
+// Only patch payment-provider — notification and tax_provider tables 
+// don't have is_installed column when no plugins are configured
+const services = ['payment-provider.js'];
 const base = 'node_modules/@medusajs/medusa/dist/services';
 
 services.forEach((file) => {
@@ -15,8 +17,8 @@ services.forEach((file) => {
   let content = fs.readFileSync(filepath, 'utf8');
 
   // Replace model.update({}, { is_installed: false })
-  // with raw SQL query that TypeORM won't reject
-  const tableName = file.replace('.js', '').replace(/-/g, '_');
+  // with raw SQL query — only for payment_provider table which has is_installed
+  const tableName = 'payment_provider';
   const sql = `model.query(\`UPDATE ${tableName} SET is_installed = false\`).catch(() => {})`;
 
   const pattern = /model\.update\(\{\}, \{ is_installed: false \}\)/g;

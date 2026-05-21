@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.next/
+.env
+*.log
+.turbo/
+coverage/
+.cache/
+.medusa-server/
+uploads/
+medusa-db.sqlite
+postgres-data/

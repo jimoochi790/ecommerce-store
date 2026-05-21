@@ -1,0 +1,11 @@
+{
+  "name": "ecommerce-store",
+  "private": true,
+  "scripts": {
+    "build": "cd backend && pnpm install --ignore-workspace && pnpm build",
+    "start": "cd backend && pnpm start"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

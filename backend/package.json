@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "medusa develop",
     "build": "medusa build",
-    "start": "medusa migrations run && medusa start",
+    "start": "node -e \"const{execSync}=require('child_process');execSync('npx medusa migrations run',{stdio:'inherit'});const{Pool}=require('pg');const p=new Pool({connectionString:process.env.DATABASE_URL,ssl:{rejectUnauthorized:false}});p.query('DELETE FROM payment_provider').then(()=>p.query('DELETE FROM plugin')).then(()=>{p.end();require('child_process').execSync('npx medusa start',{stdio:'inherit'})}).catch(e=>{console.log('Cleanup error (may be first run):',e.message);p.end();require('child_process').execSync('npx medusa start',{stdio:'inherit'})})\"",
     "seed": "medusa exec ./src/scripts/seed.ts",
     "migrate": "medusa migrations run"
   },

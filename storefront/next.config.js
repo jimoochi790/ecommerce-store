@@ -12,9 +12,6 @@ const nextConfig = {
       },
     ],
   },
-  turbopack: {
-    root: "/home/jimoochi/hermes-workspace/ecommerce-store/storefront",
-  },
 }
 
 module.exports = nextConfig

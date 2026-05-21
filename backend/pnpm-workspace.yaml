@@ -1,4 +1,0 @@
-allowBuilds:
-  core-js: set this to true or false
-  medusa-telemetry: set this to true or false
-  msgpackr-extract: set this to true or false

@@ -61,11 +61,21 @@ async function setup() {
 
     for (const item of products) {
       // Insert product
+      const baseCols = 'id, title, description, is_giftcard, created_at, updated_at'
+      const baseVals = '$1, $2, $3, false, NOW(), NOW()'
+      const baseParams = [item.id, item.title, item.desc]
+
       if (hasProfileCol) {
-        await pool.query(`INSERT INTO product (id, title, description, profile_id, is_giftcard, created_at, updated_at) VALUES ($1, $2, $3, $4, false, NOW(), NOW())`, [item.id, item.title, item.desc, profileId])
+        await pool.query(`INSERT INTO product (${baseCols}, profile_id) VALUES (${baseVals}, $4)`, [...baseParams, profileId])
       } else {
-        await pool.query(`INSERT INTO product (id, title, description, is_giftcard, created_at, updated_at) VALUES ($1, $2, $3, false, NOW(), NOW())`, [item.id, item.title, item.desc])
+        await pool.query(`INSERT INTO product (${baseCols}) VALUES (${baseVals})`, baseParams)
         try { await pool.query(`INSERT INTO product_shipping_profile (profile_id, product_id) VALUES ($1, $2) ON CONFLICT DO NOTHING`, [profileId, item.id]) } catch(e) {}
+      }
+
+      // Set status to published if the column exists
+      const hasStatusCol = await colExists('product', 'status')
+      if (hasStatusCol) {
+        await pool.query(`UPDATE product SET status = 'published' WHERE id = $1`, [item.id])
       }
 
       for (const v of item.variants) {

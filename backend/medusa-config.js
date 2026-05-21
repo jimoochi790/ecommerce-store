@@ -47,7 +47,7 @@ module.exports = {
     store_cors: process.env.STORE_CORS || "http://localhost:3001",
     admin_cors: process.env.ADMIN_CORS || "http://localhost:3001",
     database_schema: "public",
-    database_logging: true,
+    database_logging: false,
   },
   plugins,
 }

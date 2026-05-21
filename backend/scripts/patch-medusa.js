@@ -1,9 +1,14 @@
-// Patches Medusa services that use model.update({}, ...) which TypeORM >=0.3.12 rejects
-// Replaces with createQueryBuilder().update() which doesn't have the empty criteria restriction
+// Patches ALL Medusa services that use .update({}, { is_installed: false })
+// which TypeORM >=0.3.12 rejects due to empty criteria
 const fs = require('fs');
 const path = require('path');
 
-const services = ['payment-provider.js', 'notification.js', 'tax-provider.js'];
+const services = [
+  'payment-provider.js',
+  'notification.js', 
+  'fulfillment-provider.js',
+  'tax-provider.js',
+];
 const base = 'node_modules/@medusajs/medusa/dist/services';
 
 services.forEach((file) => {
@@ -15,17 +20,19 @@ services.forEach((file) => {
 
   let content = fs.readFileSync(filepath, 'utf8');
 
-  // Replace: model.update({}, { is_installed: false })
-  // With:    model.createQueryBuilder().update().where('1=1').set({ is_installed: false }).execute()
-  const pattern = /model\.update\(\{\}, \{ is_installed: false \}\)/g;
-  const replacement = `model.createQueryBuilder().update().where('1=1').set({ is_installed: false }).execute()`;
+  // Match any variable.update({}, { is_installed: false })
+  // e.g., model.update({}, ...) or fulfillmentProviderRepo.update({}, ...)
+  const pattern = /(\w+)\.update\(\{\}, \{ is_installed: false \}\)/g;
   
-  const matches = content.match(pattern);
+  let count = 0;
+  content = content.replace(pattern, (match, varName) => {
+    count++;
+    return `${varName}.createQueryBuilder().update().where('1=1').set({ is_installed: false }).execute()`;
+  });
 
-  if (matches) {
-    content = content.replace(pattern, replacement);
+  if (count > 0) {
     fs.writeFileSync(filepath, content);
-    console.log(`Patched ${file}: ${matches.length} occurrence(s)`);
+    console.log(`Patched ${file}: ${count} occurrence(s)`);
   } else {
     console.log(`No match in ${file}`);
   }

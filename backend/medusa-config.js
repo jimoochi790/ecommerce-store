@@ -38,12 +38,13 @@ const plugins = [
     },
   },
   {
-    resolve: `medusa-file-local`,
+    resolve: `medusa-file-s3`,
     options: {
-      upload_dir: process.env.UPLOAD_DIR || "./uploads",
-      backend_url: process.env.STORE_CORS
-        ? process.env.STORE_CORS.split(",")[0].trim()
-        : "http://localhost:9000",
+      s3_url: process.env.S3_URL,
+      bucket: process.env.S3_BUCKET,
+      region: process.env.S3_REGION,
+      access_key_id: process.env.S3_ACCESS_KEY_ID,
+      secret_access_key: process.env.S3_SECRET_ACCESS_KEY,
     },
   },
   {

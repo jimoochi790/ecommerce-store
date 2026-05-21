@@ -1,0 +1,11 @@
+[build]
+builder = "nixpacks"
+
+[build.build_args]
+NIXPACKS_NODE_VERSION = "22"
+
+[deploy]
+healthcheckPath = "/health"
+
+[service]
+source = "backend"

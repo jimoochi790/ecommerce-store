@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "medusa develop",
     "build": "medusa build",
-    "start": "medusa start",
+    "start": "medusa migrations run && medusa start",
     "seed": "medusa exec ./src/scripts/seed.ts",
     "migrate": "medusa migrations run"
   },

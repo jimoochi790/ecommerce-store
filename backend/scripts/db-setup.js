@@ -1,4 +1,4 @@
-// Direct DB setup with correct Medusa v1 table schema
+// Direct DB setup — inserts directly into Medusa v1 PostgreSQL tables
 const { Pool } = require('pg')
 const scrypt = require('scrypt-kdf')
 
@@ -9,24 +9,20 @@ async function setup() {
   })
 
   try {
-    // Generate password hash
     const hash = await scrypt.kdf('admin123', { logN: 1, r: 1, p: 1 })
 
-    // 1. Create region (country links via country.region_id)
+    // 1. Region
     const regions = await pool.query('SELECT COUNT(*) FROM region')
     if (parseInt(regions.rows[0].count) === 0) {
       await pool.query(
         `INSERT INTO region (id, name, currency_code, tax_rate, created_at, updated_at)
          VALUES ('reg_default', 'Worldwide', 'usd', 0, NOW(), NOW())`
       )
-      // Link US to region
-      await pool.query(
-        `UPDATE country SET region_id = 'reg_default' WHERE iso_2 = 'us'`
-      )
+      await pool.query(`UPDATE country SET region_id = 'reg_default' WHERE iso_2 = 'us'`)
       console.log('✓ Region created')
     }
 
-    // 2. Create admin user (no "role" column in this schema)
+    // 2. Admin user
     const users = await pool.query("SELECT id FROM \"user\" WHERE email = 'admin@hermes.store'")
     if (users.rows.length === 0) {
       await pool.query(
@@ -37,7 +33,7 @@ async function setup() {
       console.log('✓ Admin: admin@hermes.store / admin123')
     }
 
-    // 3. Get default shipping profile
+    // 3. Shipping profile
     let profile = await pool.query("SELECT id FROM shipping_profile WHERE type = 'default' LIMIT 1")
     if (profile.rows.length === 0) {
       await pool.query(
@@ -48,7 +44,13 @@ async function setup() {
     }
     const profileId = profile.rows[0].id
 
-    // 4. Create products
+    // 4. Products — check which columns exist
+    const cols = await pool.query(
+      "SELECT column_name FROM information_schema.columns WHERE table_name = 'product'"
+    )
+    const colNames = cols.rows.map(r => r.column_name)
+    const hasProfileId = colNames.includes('profile_id')
+
     const prods = await pool.query('SELECT COUNT(*) FROM product')
     if (parseInt(prods.rows[0].count) === 0) {
       const items = [
@@ -70,11 +72,26 @@ async function setup() {
       ]
 
       for (const item of items) {
-        await pool.query(
-          `INSERT INTO product (id, title, description, profile_id, is_giftcard, created_at, updated_at)
-           VALUES ($1, $2, $3, $4, false, NOW(), NOW())`,
-          [item.id, item.title, item.desc, profileId]
-        )
+        if (hasProfileId) {
+          await pool.query(
+            `INSERT INTO product (id, title, description, profile_id, is_giftcard, created_at, updated_at)
+             VALUES ($1, $2, $3, $4, false, NOW(), NOW())`,
+            [item.id, item.title, item.desc, profileId]
+          )
+        } else {
+          await pool.query(
+            `INSERT INTO product (id, title, description, is_giftcard, created_at, updated_at)
+             VALUES ($1, $2, $3, false, NOW(), NOW())`,
+            [item.id, item.title, item.desc]
+          )
+          // Insert into product_shipping_profile join table
+          await pool.query(
+            `INSERT INTO product_shipping_profile (profile_id, product_id)
+             VALUES ($1, $2) ON CONFLICT DO NOTHING`,
+            [profileId, item.id]
+          )
+        }
+
         for (const v of item.variants) {
           await pool.query(
             `INSERT INTO product_variant (id, product_id, title, inventory_quantity, allow_backorder, manage_inventory, created_at, updated_at)

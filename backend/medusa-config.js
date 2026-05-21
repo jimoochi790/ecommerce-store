@@ -38,7 +38,7 @@ const plugins = [
     },
   },
   {
-    resolve: `@medusajs/medusa-file-local`,
+    resolve: `medusa-file-local`,
     options: {
       upload_dir: process.env.UPLOAD_DIR || "./uploads",
       backend_url: process.env.STORE_CORS

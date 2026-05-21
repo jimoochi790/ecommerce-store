@@ -90,6 +90,23 @@ async function setup() {
     }
 
     console.log(`✓ ${products.length} products`)
+
+    // 5. Link products to default sales channel
+    const sc = await pool.query("SELECT id FROM sales_channel WHERE is_disabled = false LIMIT 1")
+    if (sc.rows.length > 0) {
+      const scId = sc.rows[0].id
+      const hasPscTable = await colExists('product_sales_channel', 'product_id')
+      if (hasPscTable) {
+        for (const item of products) {
+          await pool.query(
+            `INSERT INTO product_sales_channel (product_id, sales_channel_id) VALUES ($1, $2) ON CONFLICT DO NOTHING`,
+            [item.id, scId]
+          )
+        }
+        console.log('✓ Products linked to sales channel')
+      }
+    }
+
     console.log('Setup complete')
   } catch (err) {
     console.error('Setup error:', err.message)

@@ -18,16 +18,6 @@ switch (process.env.NODE_ENV) {
 
 dotenv.config({ path: process.cwd() + "/" + ENV_FILE_NAME })
 
-const CORS_OPTIONS = {
-  origin: (process.env.STORE_CORS || "").split(",").map((s) => s.trim()),
-  credentials: true,
-}
-
-const ADMIN_CORS_OPTIONS = {
-  origin: (process.env.ADMIN_CORS || "").split(",").map((s) => s.trim()),
-  credentials: true,
-}
-
 const plugins = [
   `medusa-fulfillment-manual`,
   {
@@ -65,8 +55,8 @@ module.exports = {
       { ssl: { rejectUnauthorized: false } },
     jwt_secret: process.env.JWT_SECRET || "supersecret",
     cookie_secret: process.env.COOOKIE_SECRET || "supersecret",
-    store_cors: CORS_OPTIONS,
-    admin_cors: ADMIN_CORS_OPTIONS,
+    store_cors: process.env.STORE_CORS || "http://localhost:3001",
+    admin_cors: process.env.ADMIN_CORS || "http://localhost:3001",
     database_schema: "public",
     database_logging: false,
   },

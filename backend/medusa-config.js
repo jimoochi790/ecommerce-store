@@ -62,9 +62,7 @@ module.exports = {
     database_url: process.env.DATABASE_URL,
     redis_url: process.env.REDIS_URL,
     database_extra:
-      process.env.NODE_ENV === "development"
-        ? { ssl: { rejectUnauthorized: false } }
-        : {},
+      { ssl: { rejectUnauthorized: false } },
     jwt_secret: process.env.JWT_SECRET || "supersecret",
     cookie_secret: process.env.COOOKIE_SECRET || "supersecret",
     store_cors: CORS_OPTIONS,

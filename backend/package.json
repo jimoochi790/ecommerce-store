@@ -7,7 +7,7 @@
     "dev": "medusa develop",
     "postinstall": "node scripts/patch-medusa.js",
     "build": "medusa build",
-    "start": "npx medusa migrations run && node scripts/db-setup.js && npx medusa-admin build && npx medusa start",
+    "start": "npx medusa migrations run && node scripts/db-setup.js && npx medusa start",
     "seed": "medusa exec ./src/scripts/seed.ts",
     "migrate": "medusa migrations run"
   },

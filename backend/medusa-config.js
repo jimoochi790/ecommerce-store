@@ -21,6 +21,13 @@ dotenv.config({ path: process.cwd() + "/" + ENV_FILE_NAME })
 const plugins = [
   `medusa-fulfillment-manual`,
   {
+    resolve: `@medusajs/admin`,
+    options: {
+      serve: true,
+      path: "/admin",
+    },
+  },
+  {
     resolve: `medusa-payment-stripe`,
     options: {
       api_key: process.env.STRIPE_API_KEY || "sk_test_placeholder",

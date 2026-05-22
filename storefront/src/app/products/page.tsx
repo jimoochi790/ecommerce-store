@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { Suspense, useState } from "react"
 import { useProducts, useCategories } from "@/hooks/use-data"
 import type { SORT_OPTION } from "@/lib/types"
 import ProductGrid from "@/components/ProductGrid"
@@ -40,7 +40,9 @@ export default function ProductsPage() {
         <h3 className="mb-3 font-pixel text-xs uppercase text-neon-cyan">Search</h3>
         <SearchBar value={search} onChange={setSearch} />
       </div>
-      <BrandSidebar />
+      <Suspense fallback={null}>
+        <BrandSidebar />
+      </Suspense>
       <div>
         <h3 className="mb-3 font-pixel text-xs uppercase text-neon-cyan">Categories</h3>
         <div className="space-y-1">

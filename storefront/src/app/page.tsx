@@ -1,5 +1,6 @@
 "use client"
 
+import { Suspense } from "react"
 import Link from "next/link"
 import { useProducts, useCategories } from "@/hooks/use-data"
 import ProductGrid from "@/components/ProductGrid"
@@ -75,7 +76,9 @@ export default function HomePage() {
             {"// BROWSE BY BRAND"}
           </h2>
           <div className="mx-auto max-w-md">
-            <BrandSidebar />
+            <Suspense fallback={null}>
+              <BrandSidebar />
+            </Suspense>
           </div>
         </div>
       </section>

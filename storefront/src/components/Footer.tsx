@@ -29,20 +29,20 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="border-t border-neutral-200 bg-white">
+    <footer className="border-t-2 border-retro-border bg-retro-surface">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link href="/" className="text-lg font-semibold text-neutral-900">
-              Store
+            <Link href="/" className="font-pixel text-sm text-neon-cyan glow-text">
+              {"< RETRO//ARCADE />"}
             </Link>
-            <p className="mt-3 text-sm text-neutral-500">
-              Premium products for modern living.
+            <p className="mt-3 text-sm text-gray-500">
+              Premium retro gaming handhelds and gear. Bringing pixel-perfect nostalgia to your pocket.
             </p>
           </div>
           {Object.values(footerLinks).map((section) => (
             <div key={section.title}>
-              <h3 className="text-sm font-semibold text-neutral-900">
+              <h3 className="font-pixel text-xs uppercase text-neon-pink glow-text-pink">
                 {section.title}
               </h3>
               <ul className="mt-4 space-y-3">
@@ -50,9 +50,9 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-neutral-500 transition-colors hover:text-neutral-900"
+                      className="text-sm text-gray-500 transition-colors hover:text-neon-cyan"
                     >
-                      {link.label}
+                      {">"} {link.label}
                     </Link>
                   </li>
                 ))}
@@ -60,9 +60,9 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-10 border-t border-neutral-200 pt-6">
-          <p className="text-center text-sm text-neutral-400">
-            &copy; {new Date().getFullYear()} Store. All rights reserved.
+        <div className="mt-10 border-t-2 border-retro-border pt-6">
+          <p className="text-center font-pixel text-[10px] text-gray-600">
+            &copy; {new Date().getFullYear()} RETRO//ARCADE. ALL RIGHTS RESERVED.
           </p>
         </div>
       </div>

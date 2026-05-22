@@ -9,40 +9,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          50: "#f2f0f5",
-          100: "#d9d5e2",
-          200: "#beb6cc",
-          300: "#a393b4",
-          400: "#8a739f",
-          500: "#725787",
-          600: "#5b436e",
-          700: "#443155",
-          800: "#2f213d",
-          900: "#1c1128",
-          950: "#0f0816",
+        retro: {
+          bg: "#0a0a1a",
+          surface: "#14142e",
+          card: "#1a1a3a",
+          border: "#2a2a4a",
+          muted: "#6a6a8a",
         },
-        accent: {
-          50: "#fff1f0",
-          100: "#ffd9d6",
-          200: "#ffbab4",
-          300: "#ff968b",
-          400: "#ff6d5e",
-          500: "#ff4432",
-          600: "#e62917",
-          700: "#b81d0f",
-          800: "#8a150b",
-          900: "#5c0e07",
+        neon: {
+          cyan: "#00e5ff",
+          pink: "#ff2d95",
+          yellow: "#ffd700",
+          green: "#39ff14",
+          purple: "#b44dff",
         },
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        pixel: ["var(--font-pixel)", "monospace"],
       },
       animation: {
         "fade-in": "fadeIn 0.3s ease-out",
         "slide-up": "slideUp 0.4s ease-out",
-        "slide-right": "slideRight 0.3s ease-out",
+        "glow-pulse": "glowPulse 2s ease-in-out infinite",
+        scanlines: "scanlines 8s linear infinite",
       },
       keyframes: {
         fadeIn: {
@@ -53,9 +43,13 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        slideRight: {
-          "0%": { opacity: "0", transform: "translateX(20px)" },
-          "100%": { opacity: "1", transform: "translateX(0)" },
+        glowPulse: {
+          "0%, 100%": { boxShadow: "0 0 5px rgba(0,229,255,0.3)" },
+          "50%": { boxShadow: "0 0 20px rgba(0,229,255,0.6), 0 0 40px rgba(0,229,255,0.3)" },
+        },
+        scanlines: {
+          "0%": { backgroundPosition: "0 0" },
+          "100%": { backgroundPosition: "0 4px" },
         },
       },
     },

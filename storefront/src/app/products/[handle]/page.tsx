@@ -32,7 +32,7 @@ export default function ProductDetailPage() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-40">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-neutral-300 border-t-neutral-900" />
+        <div className="h-8 w-8 animate-spin border-2 border-retro-border border-t-neon-cyan" />
       </div>
     )
   }
@@ -40,7 +40,7 @@ export default function ProductDetailPage() {
   if (!product) {
     return (
       <div className="flex flex-col items-center justify-center py-40">
-        <p className="text-lg font-medium text-neutral-900">Product not found</p>
+        <p className="font-pixel text-sm text-neon-pink">404 // PRODUCT NOT FOUND</p>
       </div>
     )
   }
@@ -95,8 +95,9 @@ export default function ProductDetailPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="lg:grid lg:grid-cols-2 lg:gap-x-12">
+        {/* Image Gallery */}
         <div className="space-y-4">
-          <div className="relative aspect-square overflow-hidden rounded-xl bg-neutral-100">
+          <div className="relative aspect-square overflow-hidden border-2 border-retro-border bg-retro-bg">
             <Image
               src={displayImage}
               alt={product.title}
@@ -105,6 +106,9 @@ export default function ProductDetailPage() {
               className="h-full w-full object-cover"
               priority
             />
+            {/* CRT corner accents */}
+            <div className="absolute left-0 top-0 h-6 w-6 border-r-2 border-b-2 border-neon-cyan/20" />
+            <div className="absolute bottom-0 right-0 h-6 w-6 border-l-2 border-t-2 border-neon-cyan/20" />
           </div>
           {images.length > 1 && (
             <div className="flex gap-3 overflow-x-auto">
@@ -113,10 +117,10 @@ export default function ProductDetailPage() {
                   key={img.id}
                   type="button"
                   onClick={() => setActiveImageIdx(idx)}
-                  className={`relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg border-2 transition-colors ${
+                  className={`relative h-20 w-20 flex-shrink-0 overflow-hidden border-2 transition-colors ${
                     idx === activeImageIdx
-                      ? "border-neutral-900"
-                      : "border-transparent hover:border-neutral-300"
+                      ? "border-neon-cyan shadow-[0_0_8px_rgba(0,229,255,0.3)]"
+                      : "border-retro-border hover:border-neon-cyan/40"
                   }`}
                 >
                   <Image
@@ -132,12 +136,13 @@ export default function ProductDetailPage() {
           )}
         </div>
 
+        {/* Product Info */}
         <div className="mt-10 lg:mt-0">
-          <h1 className="text-3xl font-bold text-neutral-900">
+          <h1 className="font-pixel text-xl text-gray-200 sm:text-2xl">
             {product.title}
           </h1>
 
-          <p className="mt-5 text-2xl font-semibold text-neutral-900">
+          <p className="mt-5 font-pixel text-2xl text-neon-pink glow-text-pink">
             {formatPrice(price)}
           </p>
 
@@ -165,22 +170,22 @@ export default function ProductDetailPage() {
               type="button"
               onClick={handleAddToCart}
               disabled={!allOptionsSelected || !inStock || adding}
-              className="btn-primary w-full py-4 text-base"
+              className="btn-primary w-full py-4 font-pixel text-sm"
             >
               {adding
-                ? "Adding..."
+                ? "ADDING..."
                 : !inStock
-                ? "Out of Stock"
-                : "Add to Cart"}
+                ? "SOLD OUT"
+                : "▶ ADD TO CART"}
             </button>
           </div>
 
           {product.description && (
-            <div className="mt-10 border-t border-neutral-200 pt-10">
-              <h2 className="text-sm font-medium text-neutral-900">
-                Description
+            <div className="mt-10 border-t-2 border-retro-border pt-10">
+              <h2 className="font-pixel text-xs uppercase text-neon-cyan">
+                {"// DESCRIPTION"}
               </h2>
-              <div className="mt-4 space-y-4 text-sm leading-relaxed text-neutral-600">
+              <div className="mt-4 space-y-4 text-sm leading-relaxed text-gray-400">
                 {product.description.split("\n").map((chunk, i) => (
                   <p key={i}>{chunk}</p>
                 ))}
@@ -188,27 +193,21 @@ export default function ProductDetailPage() {
             </div>
           )}
 
-          <div className="mt-10 border-t border-neutral-200 pt-10">
-            <h2 className="text-sm font-medium text-neutral-900">
-              Shipping &amp; Returns
+          <div className="mt-10 border-t-2 border-retro-border pt-10">
+            <h2 className="font-pixel text-xs uppercase text-neon-cyan">
+              {"// SHIPPING & RETURNS"}
             </h2>
-            <ul className="mt-4 space-y-3 text-sm text-neutral-500">
+            <ul className="mt-4 space-y-3 text-sm text-gray-500">
               <li className="flex items-start gap-3">
-                <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-neutral-400" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-                </svg>
-                <span>Free shipping on orders over $100</span>
+                <span className="mt-0.5 text-neon-cyan">▶</span>
+                <span>Free shipping on orders over A$100</span>
               </li>
               <li className="flex items-start gap-3">
-                <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-neutral-400" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182" />
-                </svg>
+                <span className="mt-0.5 text-neon-pink">▶</span>
                 <span>Free 30-day returns</span>
               </li>
               <li className="flex items-start gap-3">
-                <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-neutral-400" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                </svg>
+                <span className="mt-0.5 text-neon-yellow">▶</span>
                 <span>Secure checkout with SSL encryption</span>
               </li>
             </ul>

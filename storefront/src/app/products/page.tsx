@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useProducts, useCategories } from "@/hooks/use-data"
-import type { SORT_OPTION, Category } from "@/lib/types"
+import type { SORT_OPTION } from "@/lib/types"
 import ProductGrid from "@/components/ProductGrid"
 import SearchBar from "@/components/SearchBar"
 
@@ -36,32 +36,32 @@ export default function ProductsPage() {
   const filterSidebar = (
     <div className="space-y-6">
       <div>
-        <h3 className="mb-3 text-sm font-medium text-neutral-900">Search</h3>
+        <h3 className="mb-3 font-pixel text-xs uppercase text-neon-cyan">Search</h3>
         <SearchBar value={search} onChange={setSearch} />
       </div>
       <div>
-        <h3 className="mb-3 text-sm font-medium text-neutral-900">Categories</h3>
+        <h3 className="mb-3 font-pixel text-xs uppercase text-neon-cyan">Categories</h3>
         <div className="space-y-1">
           <button
             type="button"
             onClick={() => setSelectedCategory("")}
-            className={`block w-full rounded-lg px-3 py-2 text-left text-sm transition-colors ${
+            className={`block w-full px-3 py-2 text-left font-pixel text-xs uppercase transition-colors ${
               !selectedCategory
-                ? "bg-neutral-100 font-medium text-neutral-900"
-                : "text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900"
+                ? "border-l-2 border-neon-cyan bg-retro-card text-neon-cyan"
+                : "text-gray-500 hover:bg-retro-card hover:text-gray-300"
             }`}
           >
-            All Categories
+            ALL
           </button>
           {categories.map((cat) => (
             <button
               key={cat.id}
               type="button"
               onClick={() => setSelectedCategory(cat.id)}
-              className={`block w-full rounded-lg px-3 py-2 text-left text-sm transition-colors ${
+              className={`block w-full px-3 py-2 text-left font-pixel text-xs uppercase transition-colors ${
                 selectedCategory === cat.id
-                  ? "bg-neutral-100 font-medium text-neutral-900"
-                  : "text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900"
+                  ? "border-l-2 border-neon-cyan bg-retro-card text-neon-cyan"
+                  : "text-gray-500 hover:bg-retro-card hover:text-gray-300"
               }`}
             >
               {cat.name}
@@ -75,10 +75,10 @@ export default function ProductsPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-neutral-900 sm:text-3xl">
-          Products
+        <h1 className="font-pixel text-xl text-neon-cyan glow-text sm:text-2xl">
+          {"// SHOP"}
           {count > 0 && (
-            <span className="ml-2 text-lg font-normal text-neutral-400">
+            <span className="ml-2 font-pixel text-sm text-gray-600">
               ({count})
             </span>
           )}
@@ -95,7 +95,7 @@ export default function ProductsPage() {
       </div>
 
       {mobileFiltersOpen && (
-        <div className="mt-6 animate-slide-up rounded-xl border border-neutral-200 bg-white p-6 shadow-sm lg:hidden">
+        <div className="mt-6 animate-slide-up border-2 border-retro-border bg-retro-surface p-6 lg:hidden">
           {filterSidebar}
         </div>
       )}
@@ -107,18 +107,18 @@ export default function ProductsPage() {
 
         <div className="min-w-0 flex-1">
           <div className="mb-6 flex items-center justify-between">
-            <p className="text-sm text-neutral-500">
+            <p className="font-pixel text-[10px] text-gray-600">
               {isLoading
-                ? "Loading..."
-                : `Showing ${products.length} of ${count} products`}
+                ? "LOADING..."
+                : `SHOWING ${products.length} OF ${count}`}
             </p>
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value as SORT_OPTION | "")}
-              className="rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-700 shadow-sm focus:border-neutral-900 focus:outline-none focus:ring-1 focus:ring-neutral-900"
+              className="border-2 border-retro-border bg-retro-surface px-3 py-2 font-pixel text-xs text-gray-300 uppercase focus:border-neon-cyan focus:outline-none"
             >
               {sortOptions.map((opt) => (
-                <option key={opt.value} value={opt.value}>
+                <option key={opt.value} value={opt.value} className="bg-retro-bg">
                   {opt.label}
                 </option>
               ))}
@@ -127,7 +127,7 @@ export default function ProductsPage() {
 
           {isLoading ? (
             <div className="flex items-center justify-center py-20">
-              <div className="h-8 w-8 animate-spin rounded-full border-2 border-neutral-300 border-t-neutral-900" />
+              <div className="h-8 w-8 animate-spin border-2 border-retro-border border-t-neon-cyan" />
             </div>
           ) : (
             <ProductGrid products={products} />

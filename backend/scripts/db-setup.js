@@ -9,8 +9,6 @@ async function setup() {
   })
 
   try {
-    const hash = await scrypt.kdf('admin123', { logN: 1, r: 1, p: 1 })
-
     // Helper: check if column exists
     async function colExists(table, column) {
       const r = await pool.query(
@@ -28,11 +26,14 @@ async function setup() {
       console.log('✓ Region')
     }
 
-    // 2. Admin
-    let u = await pool.query("SELECT id FROM \"user\" WHERE email = 'admin@hermes.store'")
+    // 2. Admin (idempotent — skips if any admin exists)
+    let u = await pool.query('SELECT id FROM "user" WHERE role = $1 LIMIT 1', ['admin'])
     if (u.rows.length === 0) {
-      await pool.query(`INSERT INTO "user" (id, email, password_hash, first_name, last_name, created_at, updated_at) VALUES ('usr_admin', 'admin@hermes.store', $1, 'Admin', 'User', NOW(), NOW())`, [hash.toString('base64')])
+      const hash = await scrypt.kdf('admin123', { logN: 1, r: 1, p: 1 })
+      await pool.query(`INSERT INTO "user" (id, email, password_hash, first_name, last_name, role, created_at, updated_at) VALUES ('usr_admin', 'admin@hermes.store', $1, 'Admin', 'User', 'admin', NOW(), NOW())`, [hash.toString('base64')])
       console.log('✓ Admin: admin@hermes.store / admin123')
+    } else {
+      console.log('✓ Admin user exists, skipping')
     }
 
     // 3. Shipping profile
@@ -53,11 +54,11 @@ async function setup() {
       { id: 'prod_tote', title: 'Hermes Tote Bag', desc: 'Canvas tote bag', variants: [{ id: 'var_tote', title: 'One Size', price: 1900 }] },
     ]
 
-    // Delete incomplete products from previous failed runs
-    await pool.query("DELETE FROM money_amount WHERE id LIKE 'ma_%'")
-    await pool.query("DELETE FROM product_variant WHERE id LIKE 'var_%'")
-    await pool.query("DELETE FROM product_shipping_profile WHERE product_id LIKE 'prod_%'")
-    await pool.query("DELETE FROM product WHERE id LIKE 'prod_%'")
+    // Delete only seeded products from previous failed runs
+    await pool.query("DELETE FROM money_amount WHERE id IN ('ma_var_tee_s','ma_var_tee_m','ma_var_tee_l','ma_var_hoodie_m','ma_var_hoodie_l','ma_var_cap','ma_var_tote')")
+    await pool.query("DELETE FROM product_variant WHERE id IN ('var_tee_s','var_tee_m','var_tee_l','var_hoodie_m','var_hoodie_l','var_cap','var_tote')")
+    await pool.query("DELETE FROM product_shipping_profile WHERE product_id IN ('prod_tee','prod_hoodie','prod_cap','prod_tote')")
+    await pool.query("DELETE FROM product WHERE id IN ('prod_tee','prod_hoodie','prod_cap','prod_tote')")
 
     for (const item of products) {
       // Insert product

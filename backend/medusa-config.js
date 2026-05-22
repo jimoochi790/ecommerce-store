@@ -21,12 +21,6 @@ dotenv.config({ path: process.cwd() + "/" + ENV_FILE_NAME })
 const plugins = [
   `medusa-fulfillment-manual`,
   {
-    resolve: `@medusajs/file-local`,
-    options: {
-      upload_dir: "uploads",
-    },
-  },
-  {
     resolve: `@medusajs/admin`,
     options: {
       serve: true,

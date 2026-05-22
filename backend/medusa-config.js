@@ -24,8 +24,6 @@ const plugins = [
     resolve: `@medusajs/admin`,
     options: {
       serve: true,
-      path: "/admin",
-      autoRebuild: true,
     },
   },
   {

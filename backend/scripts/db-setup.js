@@ -1,6 +1,6 @@
 // Direct DB setup — adapts to current migration state
 const { Pool } = require('pg')
-const scrypt = require('scrypt-kdf')
+const scrypt = require('scrypt-kdf').default || require('scrypt-kdf')
 
 async function setup() {
   const pool = new Pool({

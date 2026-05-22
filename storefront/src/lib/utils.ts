@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatPrice(amount: number, currency: string = "USD"): string {
+export function formatPrice(amount: number, currency: string = "AUD"): string {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: currency.toUpperCase(),
@@ -20,7 +20,7 @@ export function getProductThumbnail(product: { thumbnail?: string | null; images
 
 export function getVariantPrice(
   variant: { prices?: { amount: number; currency_code: string }[] },
-  currencyCode: string = "usd"
+  currencyCode: string = "aud"
 ): number {
   if (!variant.prices || variant.prices.length === 0) return 0
   const price = variant.prices.find((p) => p.currency_code === currencyCode)

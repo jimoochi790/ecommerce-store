@@ -50,7 +50,12 @@ export default function ProductDetailPage() {
   const displayImage = images[activeImageIdx]?.url || images[0]?.url || thumbnail
 
   const variant = findSelectedVariant(product.variants, selectedOpts, product.options)
-  const price = variant ? getVariantPrice(variant) : 0
+  const defaultVariant = product.variants[0]
+  const price = variant
+    ? getVariantPrice(variant)
+    : defaultVariant
+    ? getVariantPrice(defaultVariant)
+    : 0
   const inStock = variant ? variant.inventory_quantity > 0 || !variant.manage_inventory : true
 
   const allOptionsSelected =

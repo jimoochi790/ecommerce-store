@@ -10,11 +10,11 @@ const config: Config = {
     extend: {
       colors: {
         retro: {
-          bg: "#0a0a1a",
-          surface: "#14142e",
-          card: "#1a1a3a",
-          border: "#2a2a4a",
-          muted: "#6a6a8a",
+          bg: "#1a1a2e",
+          surface: "#22223a",
+          card: "#2a2a44",
+          border: "#3a3a5a",
+          muted: "#7a7a9a",
         },
         neon: {
           cyan: "#00e5ff",

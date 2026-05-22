@@ -25,6 +25,7 @@ const plugins = [
     options: {
       serve: true,
       path: "/admin",
+      autoRebuild: true,
     },
   },
   {

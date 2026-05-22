@@ -5,6 +5,7 @@ import { useProducts, useCategories } from "@/hooks/use-data"
 import type { SORT_OPTION } from "@/lib/types"
 import ProductGrid from "@/components/ProductGrid"
 import SearchBar from "@/components/SearchBar"
+import BrandSidebar from "@/components/BrandSidebar"
 
 const sortOptions: { value: SORT_OPTION | ""; label: string }[] = [
   { value: "", label: "Default" },
@@ -39,6 +40,7 @@ export default function ProductsPage() {
         <h3 className="mb-3 font-pixel text-xs uppercase text-neon-cyan">Search</h3>
         <SearchBar value={search} onChange={setSearch} />
       </div>
+      <BrandSidebar />
       <div>
         <h3 className="mb-3 font-pixel text-xs uppercase text-neon-cyan">Categories</h3>
         <div className="space-y-1">

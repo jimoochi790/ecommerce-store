@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useProducts, useCategories } from "@/hooks/use-data"
 import ProductGrid from "@/components/ProductGrid"
+import BrandSidebar from "@/components/BrandSidebar"
 
 export default function HomePage() {
   const { data: featuredData } = useProducts({ limit: 4 })
@@ -63,6 +64,18 @@ export default function HomePage() {
                 NEW ARRIVALS
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Brands Section */}
+      <section className="border-t-2 border-retro-border bg-retro-surface">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <h2 className="mb-8 text-center font-pixel text-lg text-neon-cyan glow-text sm:text-xl">
+            {"// BROWSE BY BRAND"}
+          </h2>
+          <div className="mx-auto max-w-md">
+            <BrandSidebar />
           </div>
         </div>
       </section>

@@ -48,7 +48,7 @@ export default function QuantityPicker({
           if (!isNaN(v) && v >= min && v <= max) onChange(v)
         }}
         disabled={disabled}
-        className="h-10 w-14 border-x-2 border-retro-border bg-transparent text-center font-pixel text-sm text-gray-200 focus:outline-none disabled:cursor-not-allowed [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+        className="h-10 w-14 border-x-2 border-retro-border bg-transparent text-center font-pixel text-sm text-gray-200 focus:outline-none disabled:cursor-not-allowed [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield] [-moz-appearance:textfield]"
         aria-label="Quantity"
       />
       <button

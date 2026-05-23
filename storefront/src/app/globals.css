@@ -45,6 +45,16 @@
   }
 }
 
+/* Hide number input spinners everywhere */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 /* Retro scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

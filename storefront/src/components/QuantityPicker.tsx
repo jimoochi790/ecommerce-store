@@ -26,12 +26,12 @@ export default function QuantityPicker({
   }
 
   return (
-    <div className="inline-flex items-center rounded-lg border border-neutral-300">
+    <div className="inline-flex items-center border-2 border-retro-border">
       <button
         type="button"
         onClick={decrement}
         disabled={disabled || value <= min}
-        className="flex h-10 w-10 items-center justify-center rounded-l-lg text-neutral-600 transition-colors hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40"
+        className="flex h-10 w-10 items-center justify-center text-gray-400 transition-colors hover:bg-retro-card hover:text-neon-cyan disabled:cursor-not-allowed disabled:opacity-20"
         aria-label="Decrease quantity"
       >
         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -48,14 +48,14 @@ export default function QuantityPicker({
           if (!isNaN(v) && v >= min && v <= max) onChange(v)
         }}
         disabled={disabled}
-        className="h-10 w-14 border-x border-neutral-300 bg-transparent text-center text-sm font-medium text-neutral-900 focus:outline-none disabled:cursor-not-allowed [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+        className="h-10 w-14 border-x-2 border-retro-border bg-transparent text-center font-pixel text-sm text-gray-200 focus:outline-none disabled:cursor-not-allowed [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         aria-label="Quantity"
       />
       <button
         type="button"
         onClick={increment}
         disabled={disabled || value >= max}
-        className="flex h-10 w-10 items-center justify-center rounded-r-lg text-neutral-600 transition-colors hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40"
+        className="flex h-10 w-10 items-center justify-center text-gray-400 transition-colors hover:bg-retro-card hover:text-neon-cyan disabled:cursor-not-allowed disabled:opacity-20"
         aria-label="Increase quantity"
       >
         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">

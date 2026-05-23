@@ -32,7 +32,6 @@ const config: Config = {
         "fade-in": "fadeIn 0.3s ease-out",
         "slide-up": "slideUp 0.4s ease-out",
         "glow-pulse": "glowPulse 2s ease-in-out infinite",
-        scanlines: "scanlines 8s linear infinite",
       },
       keyframes: {
         fadeIn: {
@@ -46,10 +45,6 @@ const config: Config = {
         glowPulse: {
           "0%, 100%": { boxShadow: "0 0 5px rgba(0,229,255,0.3)" },
           "50%": { boxShadow: "0 0 20px rgba(0,229,255,0.6), 0 0 40px rgba(0,229,255,0.3)" },
-        },
-        scanlines: {
-          "0%": { backgroundPosition: "0 0" },
-          "100%": { backgroundPosition: "0 4px" },
         },
       },
     },

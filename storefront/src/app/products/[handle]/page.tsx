@@ -27,7 +27,7 @@ export default function ProductDetailPage() {
   const [selectedOpts, setSelectedOpts] = useState<Record<string, string>>({})
   const [quantity, setQuantity] = useState(1)
   const [adding, setAdding] = useState(false)
-  const [activeImageIdx, setActiveImageIdx] = useState(0)
+  const [manualImageIdx, setManualImageIdx] = useState<number | null>(null)
 
   if (isLoading) {
     return (
@@ -55,7 +55,10 @@ export default function ProductDetailPage() {
     : selectedColor
     ? findImageByColor(images, selectedColor)
     : null
-  const displayImage = matchedImageUrl || images[activeImageIdx]?.url || images[0]?.url || thumbnail
+  const activeIdx = manualImageIdx ?? images.length - 1
+  const displayImage = manualImageIdx !== null
+    ? images[manualImageIdx]?.url
+    : matchedImageUrl || images[images.length - 1]?.url || thumbnail
 
   const defaultVariant = product.variants[0]
   const price = variant
@@ -123,9 +126,9 @@ export default function ProductDetailPage() {
                 <button
                   key={img.id}
                   type="button"
-                  onClick={() => setActiveImageIdx(idx)}
+                  onClick={() => setManualImageIdx(idx)}
                   className={`relative h-20 w-20 flex-shrink-0 overflow-hidden border-2 transition-colors ${
-                    idx === activeImageIdx || img.url === matchedImageUrl
+                    idx === activeIdx
                       ? "border-neon-cyan shadow-[0_0_8px_rgba(0,229,255,0.3)]"
                       : "border-retro-border hover:border-neon-cyan/40"
                   }`}

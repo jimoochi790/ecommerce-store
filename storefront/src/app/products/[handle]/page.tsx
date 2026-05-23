@@ -49,7 +49,12 @@ export default function ProductDetailPage() {
   const images = product.images?.length ? product.images : [{ id: "main", url: thumbnail }]
 
   const variant = findSelectedVariant(product.variants, selectedOpts, product.options)
-  const matchedImageUrl = variant ? findMatchingImage(images, variant) : null
+  const selectedColor = getSelectedColor(selectedOpts, product.options)
+  const matchedImageUrl = variant
+    ? findMatchingImage(images, variant)
+    : selectedColor
+    ? findImageByColor(images, selectedColor)
+    : null
   const displayImage = matchedImageUrl || images[activeImageIdx]?.url || images[0]?.url || thumbnail
 
   const defaultVariant = product.variants[0]
@@ -218,6 +223,31 @@ export default function ProductDetailPage() {
       </div>
     </div>
   )
+}
+
+function getSelectedColor(
+  selected: Record<string, string>,
+  options: { id: string; title: string }[]
+): string | null {
+  const colorOpt = options.find((o) => o.title.toLowerCase() === "color")
+  if (!colorOpt) return null
+  return selected[colorOpt.id] || null
+}
+
+function findImageByColor(images: { url: string }[], color: string): string | null {
+  const aliases: Record<string, string[]> = {
+    black: ["black", "grey", "gray", "dark", "retro"],
+    white: ["white"],
+    purple: ["purple"],
+  }
+  const terms = aliases[color.toLowerCase()] || [color.toLowerCase()]
+  for (const img of images) {
+    const filename = img.url.toLowerCase()
+    if (terms.some((t) => filename.includes(t))) {
+      return img.url
+    }
+  }
+  return null
 }
 
 function findMatchingImage(

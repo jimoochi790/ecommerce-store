@@ -230,9 +230,16 @@ function findMatchingImage(
   if (!colorOpt) return null
   
   const color = colorOpt.value.toLowerCase()
+  const aliases: Record<string, string[]> = {
+    black: ["black", "grey", "gray", "dark", "retro"],
+    white: ["white"],
+    purple: ["purple"],
+  }
+  const terms = aliases[color] || [color]
+  
   for (const img of images) {
     const filename = img.url.toLowerCase()
-    if (filename.includes(color)) {
+    if (terms.some((t) => filename.includes(t))) {
       return img.url
     }
   }

@@ -47,9 +47,11 @@ export default function ProductDetailPage() {
 
   const thumbnail = getProductThumbnail(product)
   const images = product.images?.length ? product.images : [{ id: "main", url: thumbnail }]
-  const displayImage = images[activeImageIdx]?.url || images[0]?.url || thumbnail
 
   const variant = findSelectedVariant(product.variants, selectedOpts, product.options)
+  const matchedImageUrl = variant ? findMatchingImage(images, variant) : null
+  const displayImage = matchedImageUrl || images[activeImageIdx]?.url || images[0]?.url || thumbnail
+
   const defaultVariant = product.variants[0]
   const price = variant
     ? getVariantPrice(variant)
@@ -118,7 +120,7 @@ export default function ProductDetailPage() {
                   type="button"
                   onClick={() => setActiveImageIdx(idx)}
                   className={`relative h-20 w-20 flex-shrink-0 overflow-hidden border-2 transition-colors ${
-                    idx === activeImageIdx
+                    idx === activeImageIdx || img.url === matchedImageUrl
                       ? "border-neon-cyan shadow-[0_0_8px_rgba(0,229,255,0.3)]"
                       : "border-retro-border hover:border-neon-cyan/40"
                   }`}
@@ -216,6 +218,25 @@ export default function ProductDetailPage() {
       </div>
     </div>
   )
+}
+
+function findMatchingImage(
+  images: { url: string }[],
+  variant: ProductVariant
+): string | null {
+  const colorOpt = variant.options.find(
+    (o) => o.option_id && o.value
+  )
+  if (!colorOpt) return null
+  
+  const color = colorOpt.value.toLowerCase()
+  for (const img of images) {
+    const filename = img.url.toLowerCase()
+    if (filename.includes(color)) {
+      return img.url
+    }
+  }
+  return null
 }
 
 function findSelectedVariant(

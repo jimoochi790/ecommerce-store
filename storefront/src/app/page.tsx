@@ -31,36 +31,36 @@ export default function HomePage() {
         <div className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-neon-cyan/10 blur-[80px]" />
         <div className="absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-neon-pink/10 blur-[80px]" />
 
-        <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             {/* Retro badge */}
-            <div className="mb-6 inline-block border-2 border-neon-yellow px-4 py-1.5">
-              <span className="font-pixel text-[10px] uppercase tracking-widest text-neon-yellow">
+            <div className="mb-3 inline-block border-2 border-neon-yellow px-3 py-1">
+              <span className="font-pixel text-[8px] uppercase tracking-widest text-neon-yellow">
                 New Drop
               </span>
             </div>
 
-            <h1 className="font-pixel text-3xl leading-relaxed text-white sm:text-4xl lg:text-5xl">
+            <h1 className="font-pixel text-2xl leading-relaxed text-white sm:text-3xl lg:text-4xl">
               <span className="text-neon-cyan glow-text">LEVEL UP</span>
               <br />
               <span className="text-neon-pink glow-text-pink">YOUR GAME</span>
             </h1>
 
-            <p className="mt-6 text-base leading-7 text-gray-400">
+            <p className="mt-3 text-sm leading-6 text-gray-400">
               Premium retro gaming handhelds for the modern collector.
               Relive the golden age of gaming — in your pocket.
             </p>
 
-            <div className="mt-10 flex items-center justify-center gap-4">
+            <div className="mt-5 flex items-center justify-center gap-3">
               <Link
                 href="/products"
-                className="btn-primary text-sm"
+                className="btn-primary text-xs"
               >
                 ▶ SHOP NOW
               </Link>
               <Link
                 href="/products?sort=created_at"
-                className="btn-secondary text-sm"
+                className="btn-secondary text-xs"
               >
                 NEW ARRIVALS
               </Link>

@@ -107,7 +107,7 @@ export default function ProductDetailPage() {
       <div className="lg:grid lg:grid-cols-2 lg:gap-x-12">
         {/* Image Gallery */}
         <div className="space-y-4">
-          <div className="relative aspect-square overflow-hidden border-2 border-retro-border bg-retro-bg">
+          <div className="relative aspect-square overflow-hidden rounded-lg bg-retro-bg">
             <Image
               src={displayImage}
               alt={product.title}

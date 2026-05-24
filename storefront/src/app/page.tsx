@@ -31,7 +31,7 @@ export default function HomePage() {
         <div className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-neon-cyan/10 blur-[80px]" />
         <div className="absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-neon-pink/10 blur-[80px]" />
 
-        <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             {/* Retro badge */}
             <div className="mb-6 inline-block border-2 border-neon-yellow px-4 py-1.5">
@@ -70,7 +70,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Products */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
         <div className="mb-12 flex items-end justify-between">
           <div>
             <h2 className="font-pixel text-lg text-neon-cyan glow-text sm:text-xl">

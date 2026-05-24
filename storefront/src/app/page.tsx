@@ -31,7 +31,7 @@ export default function HomePage() {
         <div className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-neon-cyan/10 blur-[80px]" />
         <div className="absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-neon-pink/10 blur-[80px]" />
 
-        <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             {/* Retro badge */}
             <div className="mb-6 inline-block border-2 border-neon-yellow px-4 py-1.5">

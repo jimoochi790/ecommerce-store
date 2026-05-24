@@ -240,7 +240,7 @@ function getSelectedColor(
 function findImageByColor(images: { url: string }[], color: string): string | null {
   const aliases: Record<string, string[]> = {
     black: ["black", "grey", "gray", "dark", "retro"],
-    white: ["white"],
+    white: ["white", "whitepng"],
     purple: ["purple", "peuple"],
   }
   const terms = aliases[color.toLowerCase()] || [color.toLowerCase()]
@@ -265,7 +265,7 @@ function findMatchingImage(
   const color = colorOpt.value.toLowerCase()
   const aliases: Record<string, string[]> = {
     black: ["black", "grey", "gray", "dark", "retro"],
-    white: ["white"],
+    white: ["white", "whitepng"],
     purple: ["purple", "peuple"],
   }
   const terms = aliases[color] || [color]

@@ -18,7 +18,7 @@ export default function ProductCard({ product, className }: ProductCardProps) {
   return (
     <Link
       href={`/products/${product.handle || product.id}`}
-      className={cn("card group block overflow-hidden", className)}
+      className={cn("card group block overflow-hidden rounded-lg", className)}
     >
       <div className="relative aspect-square overflow-hidden bg-retro-bg">
         <Image

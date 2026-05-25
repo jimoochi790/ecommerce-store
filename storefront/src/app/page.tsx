@@ -25,6 +25,26 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-retro-bg via-transparent to-transparent" />
 
         <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+          {/* AU flag badge - visible above fold */}
+          <div className="absolute right-4 top-4 sm:right-8 sm:top-8">
+            <div className="flex items-center gap-2 rounded-sm border border-white/10 bg-aussie-navy/80 px-2.5 py-1.5 backdrop-blur-sm">
+              {/* Mini flag */}
+              <div className="relative h-5 w-8 flex-shrink-0 overflow-hidden rounded-sm bg-aussie-blue">
+                <div className="absolute left-0 top-0 h-2.5 w-2.5 bg-aussie-red">
+                  <div className="absolute left-[3px] top-[1px] h-[3px] w-[3px] rotate-45 bg-white" />
+                  <div className="absolute left-[1px] top-[3px] h-[3px] w-[3px] rotate-45 bg-white" />
+                </div>
+                <div className="absolute right-[3px] top-[2px] h-1 w-1 rounded-full bg-white/90" />
+                <div className="absolute right-[9px] top-[1px] h-[3px] w-[2px] rotate-45 rounded-full bg-white/90" />
+                <div className="absolute right-[6px] top-[7px] h-[2px] w-[2px] rounded-full bg-white/90" />
+                <div className="absolute right-[12px] top-[9px] h-[2px] w-[2px] rounded-full bg-white/80" />
+                <div className="absolute right-[15px] top-[4px] h-[2px] w-[2px] rounded-full bg-white/80" />
+              </div>
+              <span className="font-pixel text-[9px] uppercase tracking-wider text-white/80">
+                AU
+              </span>
+            </div>
+          </div>
           <div className="mx-auto max-w-2xl text-center">
             {/* Retro badge */}
             <div className="mb-3 inline-block border-2 border-neon-cyan px-3 py-1">

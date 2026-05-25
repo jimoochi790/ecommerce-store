@@ -131,6 +131,50 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Australian Seller — Trust */}
+      <section className="border-t-2 border-retro-border">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-xl text-center">
+            <div className="mb-3 inline-block border-2 border-neon-yellow px-3 py-1">
+              <span className="font-pixel text-[8px] uppercase tracking-widest text-neon-yellow">
+                AUSSIE OWNED
+              </span>
+            </div>
+            <h2 className="font-pixel text-lg text-neon-cyan glow-text sm:text-xl">
+              {"// SHOP LOCAL"}
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-gray-400">
+              We are an Australian-owned retro gaming store. Every order ships from within Australia
+              — no international wait times, no surprise import fees. All prices in AUD.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            <div className="rounded-lg border border-retro-border bg-retro-card p-6 text-center">
+              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-neon-cyan/30">
+                <span className="font-pixel text-sm text-neon-cyan">AU</span>
+              </div>
+              <h3 className="font-pixel text-[10px] uppercase text-gray-200">Australian Seller</h3>
+              <p className="mt-1 text-xs text-gray-500">Registered business, local stock, shipped from Australia.</p>
+            </div>
+            <div className="rounded-lg border border-retro-border bg-retro-card p-6 text-center">
+              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-neon-pink/30">
+                <span className="font-pixel text-sm text-neon-pink">$</span>
+              </div>
+              <h3 className="font-pixel text-[10px] uppercase text-gray-200">AUD Pricing</h3>
+              <p className="mt-1 text-xs text-gray-500">All prices in Australian dollars. No currency conversion guesswork.</p>
+            </div>
+            <div className="rounded-lg border border-retro-border bg-retro-card p-6 text-center">
+              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-neon-yellow/30">
+                <span className="font-pixel text-sm text-neon-yellow">✓</span>
+              </div>
+              <h3 className="font-pixel text-[10px] uppercase text-gray-200">Secure & Trusted</h3>
+              <p className="mt-1 text-xs text-gray-500">30-day returns, fast dispatch, and real support from a real person.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Bottom CTA */}
       <section className="border-t-2 border-retro-border">
         <div className="mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 lg:px-8">

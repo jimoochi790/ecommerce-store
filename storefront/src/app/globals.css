@@ -60,10 +60,10 @@ input[type="number"] {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #e8e3db;
+  background: #c9c1b5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c4bbb0;
+  background: #ada498;
   border: 1px solid #009dab22;
 }
 ::-webkit-scrollbar-thumb:hover {

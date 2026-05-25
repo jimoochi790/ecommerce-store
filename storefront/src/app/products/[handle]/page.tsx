@@ -51,11 +51,15 @@ export default function ProductDetailPage() {
   const variant = findSelectedVariant(product.variants, selectedOpts, product.options)
   const selectedColor = getSelectedColor(selectedOpts, product.options)
   const matchedImageUrl = variant
-    ? findMatchingImage(images, variant)
+    ? findMatchingImage(images, variant, product.options)
     : selectedColor
     ? findImageByColor(images, selectedColor)
     : null
-  const activeIdx = manualImageIdx ?? images.length - 1
+  // Find which image index matches the current color selection for thumbnail highlight
+  const matchedIdx = manualImageIdx ?? (matchedImageUrl
+    ? images.findIndex((img) => img.url === matchedImageUrl)
+    : -1)
+  const activeIdx = matchedIdx >= 0 ? matchedIdx : images.length - 1
   const displayImage = manualImageIdx !== null
     ? images[manualImageIdx]?.url
     : matchedImageUrl || thumbnail || images[0]?.url
@@ -261,12 +265,15 @@ function findImageByColor(images: { url: string }[], color: string): string | nu
 
 function findMatchingImage(
   images: { url: string }[],
-  variant: ProductVariant
+  variant: ProductVariant,
+  options: { id: string; title: string }[]
 ): string | null {
-  const colorOpt = variant.options.find(
-    (o) => o.option_id && o.value
-  )
-  if (!colorOpt) return null
+  // Find the color option value from the variant
+  const colorOptId = options.find((o) => o.title.toLowerCase() === "color")?.id
+  if (!colorOptId) return null
+  
+  const colorOpt = variant.options.find((o) => o.option_id === colorOptId)
+  if (!colorOpt || !colorOpt.value) return null
   
   const color = colorOpt.value.toLowerCase()
   const aliases: Record<string, string[]> = {

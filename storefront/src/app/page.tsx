@@ -11,23 +11,20 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Hero Section — Miyoo Focus */}
+      {/* Hero Section — Banner */}
       <section className="relative overflow-hidden bg-retro-bg">
-        {/* Animated grid background */}
+        {/* Banner image */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage:
-              "linear-gradient(rgba(0,229,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.3) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
+            backgroundImage: "url(/miyoo-banner.jpg)",
           }}
         />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-retro-bg via-transparent to-transparent" />
 
-        {/* Glow orbs */}
-        <div className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-neon-cyan/10 blur-[80px]" />
-        <div className="absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-neon-pink/10 blur-[80px]" />
-
-        <div className="relative mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             {/* Retro badge */}
             <div className="mb-3 inline-block border-2 border-neon-cyan px-3 py-1">
@@ -39,10 +36,10 @@ export default function HomePage() {
             <h1 className="font-pixel text-2xl leading-relaxed text-white sm:text-3xl lg:text-4xl">
               <span className="text-neon-cyan glow-text">PIXEL PERFECT</span>
               <br />
-              <span className="text-gray-300">RETRO GAMING</span>
+              <span className="text-gray-200">RETRO GAMING</span>
             </h1>
 
-            <p className="mt-3 text-sm leading-6 text-gray-400">
+            <p className="mt-3 text-sm leading-6 text-gray-300">
               The Miyoo Mini Plus and Miyoo Flip — the ultimate pocket-sized consoles
               for retro gaming on the go. GameBoy, GBA, SNES, PS1 and more, all in the palm of your hand.
             </p>
@@ -56,7 +53,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/products"
-                className="btn-secondary text-xs"
+                className="btn-secondary text-xs border-white/30 text-white hover:bg-white/10"
               >
                 ALL PRODUCTS
               </Link>

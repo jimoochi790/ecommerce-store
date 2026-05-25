@@ -73,7 +73,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/products"
-                className="btn-secondary text-xs border-white/40 text-white bg-white/10 hover:bg-white/20"
+                className="inline-flex items-center justify-center rounded-none border-2 border-white/50 bg-white/10 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-white/20 active:scale-95"
               >
                 ALL PRODUCTS
               </Link>

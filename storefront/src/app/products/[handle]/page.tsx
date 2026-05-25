@@ -152,7 +152,7 @@ export default function ProductDetailPage() {
 
         {/* Product Info */}
         <div className="mt-10 lg:mt-0">
-          <h1 className="font-pixel text-xl text-gray-200 sm:text-2xl">
+          <h1 className="font-pixel text-xl text-gray-800 sm:text-2xl">
             {product.title}
           </h1>
 
@@ -200,7 +200,7 @@ export default function ProductDetailPage() {
               <h2 className="font-pixel text-xs uppercase text-neon-cyan">
                 {"// DESCRIPTION"}
               </h2>
-              <div className="mt-4 space-y-1.5 text-sm leading-relaxed text-gray-400">
+              <div className="mt-4 space-y-1.5 text-sm leading-relaxed text-gray-600">
                 {product.description.split("\n").filter(chunk => chunk.trim()).map((chunk, i) => {
                   if (chunk.startsWith("- ")) {
                     return <p key={i} className="pl-3">&bull; {chunk.slice(2)}</p>
@@ -218,7 +218,7 @@ export default function ProductDetailPage() {
             <h2 className="font-pixel text-xs uppercase text-neon-cyan">
               {"// SHIPPING & RETURNS"}
             </h2>
-            <ul className="mt-4 space-y-3 text-sm text-gray-500">
+            <ul className="mt-4 space-y-3 text-sm text-gray-600">
               <li className="flex items-start gap-3">
                 <span className="mt-0.5 text-neon-cyan">▶</span>
                 <span>Free shipping on orders over A$100</span>

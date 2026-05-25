@@ -10,18 +10,18 @@ const config: Config = {
     extend: {
       colors: {
         retro: {
-          bg: "#1a1a2e",
-          surface: "#22223a",
-          card: "#2a2a44",
-          border: "#3a3a5a",
-          muted: "#7a7a9a",
+          bg: "#f5f0eb",
+          surface: "#ede8e0",
+          card: "#ffffff",
+          border: "#d4cdc4",
+          muted: "#8a8278",
         },
         neon: {
-          cyan: "#00e5ff",
-          pink: "#ff2d95",
-          yellow: "#ffd700",
-          green: "#39ff14",
-          purple: "#b44dff",
+          cyan: "#009dab",
+          pink: "#d91a6a",
+          yellow: "#d4a800",
+          green: "#2ab800",
+          purple: "#8b2fc9",
         },
         aussie: {
           red: "#ff2436",

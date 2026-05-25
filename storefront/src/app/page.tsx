@@ -170,7 +170,7 @@ export default function HomePage() {
             <h2 className="font-pixel text-lg text-white sm:text-xl">
               {"// SHOP LOCAL"}
             </h2>
-            <p className="mt-3 text-sm leading-6 text-gray-400">
+            <p className="mt-3 text-sm leading-6 text-gray-600">
               We are an Australian-owned retro gaming store. Every order ships from within Australia
               - no international wait times, no surprise import fees. All prices in AUD.
             </p>
@@ -215,7 +215,7 @@ export default function HomePage() {
           <h2 className="font-pixel text-xl text-neon-yellow glow-text-pink sm:text-2xl">
             READY PLAYER?
           </h2>
-          <p className="mt-4 text-gray-400">
+          <p className="mt-4 text-gray-600">
             Free shipping on orders over A$100. 30-day returns.
           </p>
           <div className="mt-8">

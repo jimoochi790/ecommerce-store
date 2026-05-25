@@ -39,7 +39,7 @@ export default function ProductCard({ product, className }: ProductCardProps) {
         )}
       </div>
       <div className="border-t-2 border-retro-border p-4">
-        <h3 className="font-pixel text-[11px] uppercase text-gray-300 line-clamp-1 group-hover:text-neon-cyan">
+        <h3 className="font-pixel text-[11px] uppercase text-gray-700 line-clamp-1 group-hover:text-neon-cyan">
           {product.title}
         </h3>
         <p className="mt-2 font-pixel text-sm text-neon-pink glow-text-pink">

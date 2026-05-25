@@ -61,7 +61,7 @@ export default function Footer() {
           ))}
         </div>
         <div className="mt-10 border-t-2 border-retro-border pt-6">
-          <p className="text-center font-pixel text-[10px] text-gray-600">
+          <p className="text-center font-pixel text-[10px] text-gray-500">
             &copy; {new Date().getFullYear()} RETRO//ARCADE. ALL RIGHTS RESERVED.
           </p>
         </div>

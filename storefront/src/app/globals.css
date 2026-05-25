@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-retro-bg text-gray-200 antialiased;
+    @apply bg-retro-bg text-gray-800 antialiased;
   }
 
   *,
@@ -17,31 +17,31 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-none border-2 border-neon-cyan bg-neon-cyan/10 px-6 py-3 text-sm font-bold uppercase tracking-wider text-neon-cyan transition-all hover:bg-neon-cyan hover:text-retro-bg hover:shadow-[0_0_20px_rgba(0,229,255,0.5)] active:scale-95 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-neon-cyan disabled:hover:shadow-none;
+    @apply inline-flex items-center justify-center rounded-none border-2 border-neon-cyan bg-neon-cyan/10 px-6 py-3 text-sm font-bold uppercase tracking-wider text-neon-cyan transition-all hover:bg-neon-cyan hover:text-white hover:shadow-[0_0_20px_rgba(0,157,171,0.4)] active:scale-95 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-neon-cyan disabled:hover:shadow-none;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-none border-2 border-retro-border bg-retro-surface px-6 py-3 text-sm font-bold uppercase tracking-wider text-gray-300 transition-all hover:border-neon-pink hover:text-neon-pink hover:shadow-[0_0_15px_rgba(255,45,149,0.4)] active:scale-95 disabled:opacity-30 disabled:hover:border-retro-border disabled:hover:text-gray-300 disabled:hover:shadow-none;
+    @apply inline-flex items-center justify-center rounded-none border-2 border-retro-border bg-white px-6 py-3 text-sm font-bold uppercase tracking-wider text-gray-700 transition-all hover:border-neon-pink hover:text-neon-pink hover:shadow-[0_0_15px_rgba(217,26,106,0.3)] active:scale-95 disabled:opacity-30;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center rounded-none px-3 py-2 text-sm font-bold uppercase tracking-wider text-gray-400 transition-all hover:bg-retro-surface hover:text-neon-cyan;
+    @apply inline-flex items-center justify-center rounded-none px-3 py-2 text-sm font-bold uppercase tracking-wider text-gray-600 transition-all hover:bg-retro-surface hover:text-neon-cyan;
   }
 
   .input-field {
-    @apply block w-full rounded-none border-2 border-retro-border bg-retro-surface px-4 py-3 text-sm text-gray-200 placeholder-gray-500 transition-all focus:border-neon-cyan focus:outline-none focus:shadow-[0_0_10px_rgba(0,229,255,0.3)] disabled:cursor-not-allowed disabled:bg-retro-bg disabled:opacity-50;
+    @apply block w-full rounded-none border-2 border-retro-border bg-white px-4 py-3 text-sm text-gray-800 placeholder-gray-400 transition-all focus:border-neon-cyan focus:outline-none focus:shadow-[0_0_10px_rgba(0,157,171,0.2)] disabled:cursor-not-allowed disabled:bg-retro-bg disabled:opacity-50;
   }
 
   .card {
-    @apply border-2 border-retro-border bg-retro-card transition-all hover:border-neon-cyan hover:shadow-[0_0_15px_rgba(0,229,255,0.25)] rounded-lg overflow-hidden;
+    @apply border-2 border-retro-border bg-retro-card transition-all hover:border-neon-cyan hover:shadow-[0_0_15px_rgba(0,157,171,0.2)] rounded-lg overflow-hidden;
   }
 
   .glow-text {
-    text-shadow: 0 0 10px rgba(0, 229, 255, 0.5), 0 0 30px rgba(0, 229, 255, 0.2);
+    text-shadow: 0 0 10px rgba(0, 157, 171, 0.4), 0 0 30px rgba(0, 157, 171, 0.15);
   }
 
   .glow-text-pink {
-    text-shadow: 0 0 10px rgba(255, 45, 149, 0.5), 0 0 30px rgba(255, 45, 149, 0.2);
+    text-shadow: 0 0 10px rgba(217, 26, 106, 0.4), 0 0 30px rgba(217, 26, 106, 0.15);
   }
 }
 
@@ -60,12 +60,12 @@ input[type="number"] {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #1a1a2e;
+  background: #e8e3db;
 }
 ::-webkit-scrollbar-thumb {
-  background: #3a3a5a;
-  border: 1px solid #00e5ff22;
+  background: #c4bbb0;
+  border: 1px solid #009dab22;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00e5ff44;
+  background: #009dab44;
 }

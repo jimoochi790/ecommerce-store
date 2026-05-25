@@ -73,7 +73,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/products"
-                className="btn-secondary text-xs border-white/30 text-white hover:bg-white/10"
+                className="btn-secondary text-xs border-white/40 text-white bg-white/10 hover:bg-white/20"
               >
                 ALL PRODUCTS
               </Link>

@@ -17,11 +17,11 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-none border-2 border-neon-cyan bg-neon-cyan/10 px-6 py-3 text-sm font-bold uppercase tracking-wider text-neon-cyan transition-all hover:bg-neon-cyan hover:text-white hover:shadow-[0_0_20px_rgba(0,157,171,0.4)] active:scale-95 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-neon-cyan disabled:hover:shadow-none;
+    @apply inline-flex items-center justify-center rounded-none border-2 border-neon-cyan bg-neon-cyan px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-neon-cyan/90 hover:shadow-[0_0_20px_rgba(0,157,171,0.4)] active:scale-95 disabled:opacity-30 disabled:hover:bg-neon-cyan disabled:hover:text-white disabled:hover:shadow-none;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-none border-2 border-retro-border bg-white px-6 py-3 text-sm font-bold uppercase tracking-wider text-gray-700 transition-all hover:border-neon-pink hover:text-neon-pink hover:shadow-[0_0_15px_rgba(217,26,106,0.3)] active:scale-95 disabled:opacity-30;
+    @apply inline-flex items-center justify-center rounded-none border-2 border-retro-border bg-retro-surface px-6 py-3 text-sm font-bold uppercase tracking-wider text-gray-700 transition-all hover:border-neon-pink hover:text-neon-pink hover:shadow-[0_0_15px_rgba(217,26,106,0.3)] active:scale-95 disabled:opacity-30;
   }
 
   .btn-ghost {

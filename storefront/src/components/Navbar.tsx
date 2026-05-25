@@ -7,7 +7,6 @@ import { useCartStore } from "@/hooks/use-cart-store"
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Shop", href: "/products" },
-  { label: "Contact", href: "mailto:support@retroarcade.com.au", external: true },
 ]
 
 export default function Navbar() {
@@ -27,23 +26,13 @@ export default function Navbar() {
           </Link>
           <div className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => (
-              link.external ? (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="btn-ghost"
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="btn-ghost"
-                >
-                  {link.label}
-                </Link>
-              )
+              <Link
+                key={link.href}
+                href={link.href}
+                className="btn-ghost"
+              >
+                {link.label}
+              </Link>
             ))}
           </div>
         </div>
@@ -102,24 +91,14 @@ export default function Navbar() {
         <div className="border-t-2 border-retro-border bg-retro-surface md:hidden">
           <div className="space-y-1 px-4 py-4">
             {navLinks.map((link) => (
-              link.external ? (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="block px-3 py-2.5 font-pixel text-sm uppercase text-gray-700 transition-colors hover:bg-retro-card hover:text-neon-cyan"
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="block px-3 py-2.5 font-pixel text-sm uppercase text-gray-700 transition-colors hover:bg-retro-card hover:text-neon-cyan"
-                >
-                  {link.label}
-                </Link>
-              )
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className="block px-3 py-2.5 font-pixel text-sm uppercase text-gray-300 transition-colors hover:bg-retro-card hover:text-neon-cyan"
+              >
+                {link.label}
+              </Link>
             ))}
             <button
               type="button"
@@ -127,7 +106,7 @@ export default function Navbar() {
                 setMobileOpen(false)
                 openCart()
               }}
-              className="flex w-full items-center gap-2 px-3 py-2.5 font-pixel text-sm uppercase text-gray-700 transition-colors hover:bg-retro-card hover:text-neon-cyan"
+              className="flex w-full items-center gap-2 px-3 py-2.5 font-pixel text-sm uppercase text-gray-300 transition-colors hover:bg-retro-card hover:text-neon-cyan"
             >
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />

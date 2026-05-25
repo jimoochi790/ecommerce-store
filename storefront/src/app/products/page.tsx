@@ -115,7 +115,7 @@ export default function ProductsPage() {
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value as SORT_OPTION | "")}
-              className="border-2 border-retro-border bg-retro-surface px-3 py-2 font-pixel text-xs text-gray-700 uppercase focus:border-neon-cyan focus:outline-none"
+              className="border-2 border-retro-border bg-retro-surface px-3 py-2 font-pixel text-xs text-gray-300 uppercase focus:border-neon-cyan focus:outline-none"
             >
               {sortOptions.map((opt) => (
                 <option key={opt.value} value={opt.value} className="bg-retro-bg">

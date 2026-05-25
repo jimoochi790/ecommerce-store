@@ -58,7 +58,7 @@ export default function ProductDetailPage() {
   const activeIdx = manualImageIdx ?? images.length - 1
   const displayImage = manualImageIdx !== null
     ? images[manualImageIdx]?.url
-    : matchedImageUrl || images[0]?.url || thumbnail
+    : matchedImageUrl || thumbnail || images[0]?.url
 
   const defaultVariant = product.variants[0]
   const price = variant

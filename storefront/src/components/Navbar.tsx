@@ -7,6 +7,7 @@ import { useCartStore } from "@/hooks/use-cart-store"
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Shop", href: "/products" },
+  { label: "Contact", href: "mailto:support@retroarcade.com.au", external: true },
 ]
 
 export default function Navbar() {
@@ -26,13 +27,23 @@ export default function Navbar() {
           </Link>
           <div className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="btn-ghost"
-              >
-                {link.label}
-              </Link>
+              link.external ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="btn-ghost"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="btn-ghost"
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
           </div>
         </div>
@@ -91,14 +102,24 @@ export default function Navbar() {
         <div className="border-t-2 border-retro-border bg-retro-surface md:hidden">
           <div className="space-y-1 px-4 py-4">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="block px-3 py-2.5 font-pixel text-sm uppercase text-gray-300 transition-colors hover:bg-retro-card hover:text-neon-cyan"
-              >
-                {link.label}
-              </Link>
+              link.external ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="block px-3 py-2.5 font-pixel text-sm uppercase text-gray-300 transition-colors hover:bg-retro-card hover:text-neon-cyan"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="block px-3 py-2.5 font-pixel text-sm uppercase text-gray-300 transition-colors hover:bg-retro-card hover:text-neon-cyan"
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
             <button
               type="button"

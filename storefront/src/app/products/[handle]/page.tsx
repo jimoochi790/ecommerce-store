@@ -195,10 +195,16 @@ export default function ProductDetailPage() {
               <h2 className="font-pixel text-xs uppercase text-neon-cyan">
                 {"// DESCRIPTION"}
               </h2>
-              <div className="mt-4 space-y-4 text-sm leading-relaxed text-gray-400">
-                {product.description.split("\n").map((chunk, i) => (
-                  <p key={i}>{chunk}</p>
-                ))}
+              <div className="mt-4 space-y-1.5 text-sm leading-relaxed text-gray-400">
+                {product.description.split("\n").filter(chunk => chunk.trim()).map((chunk, i) => {
+                  if (chunk.startsWith("- ")) {
+                    return <p key={i} className="pl-3">&bull; {chunk.slice(2)}</p>
+                  }
+                  if (!chunk.includes(" - ") && chunk.split(" ").length <= 4) {
+                    return <p key={i} className="mt-4 font-semibold text-neon-cyan first:mt-0">{chunk}</p>
+                  }
+                  return <p key={i}>{chunk}</p>
+                })}
               </div>
             </div>
           )}

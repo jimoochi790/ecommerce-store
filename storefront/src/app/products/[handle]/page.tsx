@@ -168,6 +168,7 @@ export default function ProductDetailPage() {
               onSelect={(optionId, value) =>
                 setSelectedOpts((prev) => ({ ...prev, [optionId]: value }))
               }
+              images={product.images}
             />
           </div>
 

@@ -7,6 +7,25 @@ interface VariantSelectorProps {
   variants: ProductVariant[]
   selected: Record<string, string>
   onSelect: (optionId: string, value: string) => void
+  images?: { url: string }[]
+}
+
+// Color aliases for matching swatch images
+const COLOR_ALIASES: Record<string, string[]> = {
+  black: ["black", "grey", "gray", "dark", "retro"],
+  white: ["white", "whitepng"],
+  purple: ["purple", "peuple"],
+}
+
+function findSwatchImage(images: { url: string }[], colorValue: string): string | null {
+  const terms = COLOR_ALIASES[colorValue.toLowerCase()] || [colorValue.toLowerCase()]
+  for (const img of images) {
+    const url = img.url.toLowerCase()
+    if (terms.some((t) => url.includes(t))) {
+      return img.url
+    }
+  }
+  return null
 }
 
 export default function VariantSelector({
@@ -14,39 +33,76 @@ export default function VariantSelector({
   variants,
   selected,
   onSelect,
+  images,
 }: VariantSelectorProps) {
   if (!options || options.length === 0) return null
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       {options.map((option) => {
-        const availableValues = getAvailableValues(
-          option,
-          variants,
-          selected
-        )
+        const isColor = option.title.toLowerCase() === "color"
+        const availableValues = getAvailableValues(option, variants, selected)
 
         return (
           <div key={option.id}>
-            <label
-              htmlFor={`option-${option.id}`}
-              className="mb-2 block text-sm font-medium text-neutral-700"
-            >
+            <label className="mb-2 block font-pixel text-[10px] uppercase tracking-wider text-neon-cyan">
               {option.title}
             </label>
-            <select
-              id={`option-${option.id}`}
-              value={selected[option.id] || ""}
-              onChange={(e) => onSelect(option.id, e.target.value)}
-              className="input-field"
-            >
-              <option value="">Select {option.title}...</option>
-              {availableValues.map((val) => (
-                <option key={val} value={val}>
-                  {val}
-                </option>
-              ))}
-            </select>
+
+            {isColor && images && images.length > 0 ? (
+              <div className="flex flex-wrap gap-3">
+                {option.values
+                  .filter((v) => availableValues.includes(v.value))
+                  .map((v) => {
+                    const swatchUrl = findSwatchImage(images, v.value)
+                    const isSelected = selected[option.id] === v.value
+                    return (
+                      <button
+                        key={v.id || v.value}
+                        type="button"
+                        onClick={() => onSelect(option.id, v.value)}
+                        className={`group relative h-16 w-16 overflow-hidden rounded-lg border-2 transition-all ${
+                          isSelected
+                            ? "border-neon-cyan shadow-[0_0_10px_rgba(0,229,255,0.4)] scale-110"
+                            : "border-retro-border hover:border-neon-cyan/60 hover:scale-105"
+                        }`}
+                        title={v.value}
+                      >
+                        {swatchUrl ? (
+                          <img
+                            src={swatchUrl}
+                            alt={v.value}
+                            className="h-full w-full object-cover"
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center bg-retro-surface text-[8px] font-pixel uppercase text-gray-500">
+                            {v.value}
+                          </div>
+                        )}
+                        <span className={`absolute -bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap font-pixel text-[8px] uppercase transition-opacity ${
+                          isSelected ? "text-neon-cyan opacity-100" : "text-gray-500 opacity-0 group-hover:opacity-100"
+                        }`}>
+                          {v.value}
+                        </span>
+                      </button>
+                    )
+                  })}
+              </div>
+            ) : (
+              <select
+                id={`option-${option.id}`}
+                value={selected[option.id] || ""}
+                onChange={(e) => onSelect(option.id, e.target.value)}
+                className="input-field"
+              >
+                <option value="">Select {option.title}...</option>
+                {availableValues.map((val) => (
+                  <option key={val} value={val}>
+                    {val}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
         )
       })}

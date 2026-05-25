@@ -1,21 +1,17 @@
 "use client"
 
-import { Suspense } from "react"
 import Link from "next/link"
-import { useProducts, useCategories } from "@/hooks/use-data"
+import { useProducts } from "@/hooks/use-data"
 import ProductGrid from "@/components/ProductGrid"
-import BrandSidebar from "@/components/BrandSidebar"
 
 export default function HomePage() {
   const { data: featuredData } = useProducts({ limit: 4 })
-  const { data: categoriesData } = useCategories()
 
   const products = featuredData?.products || []
-  const categories = categoriesData?.categories || []
 
   return (
     <div>
-      {/* Hero Section */}
+      {/* Hero Section — Miyoo Focus */}
       <section className="relative overflow-hidden bg-retro-bg">
         {/* Animated grid background */}
         <div
@@ -34,42 +30,42 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             {/* Retro badge */}
-            <div className="mb-3 inline-block border-2 border-neon-yellow px-3 py-1">
-              <span className="font-pixel text-[8px] uppercase tracking-widest text-neon-yellow">
-                New Drop
+            <div className="mb-3 inline-block border-2 border-neon-cyan px-3 py-1">
+              <span className="font-pixel text-[8px] uppercase tracking-widest text-neon-cyan">
+                // MIYOO MINI
               </span>
             </div>
 
             <h1 className="font-pixel text-2xl leading-relaxed text-white sm:text-3xl lg:text-4xl">
-              <span className="text-neon-cyan glow-text">LEVEL UP</span>
+              <span className="text-neon-cyan glow-text">PIXEL PERFECT</span>
               <br />
-              <span className="text-neon-pink glow-text-pink">YOUR GAME</span>
+              <span className="text-gray-300">RETRO GAMING</span>
             </h1>
 
             <p className="mt-3 text-sm leading-6 text-gray-400">
-              Premium retro gaming handhelds for the modern collector.
-              Relive the golden age of gaming — in your pocket.
+              The Miyoo Mini Plus and Miyoo Flip — the ultimate pocket-sized consoles
+              for retro gaming on the go. GameBoy, GBA, SNES, PS1 and more, all in the palm of your hand.
             </p>
 
             <div className="mt-5 flex items-center justify-center gap-3">
               <Link
-                href="/products"
+                href="/products?q=miyoo"
                 className="btn-primary text-xs"
               >
-                ▶ SHOP NOW
+                ▶ SHOP MIYOO
               </Link>
               <Link
-                href="/products?sort=created_at"
+                href="/products"
                 className="btn-secondary text-xs"
               >
-                NEW ARRIVALS
+                ALL PRODUCTS
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Products */}
+      {/* Miyoo Mini Plus — Featured */}
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
         <div className="mb-12 flex items-end justify-between">
           <div>
@@ -77,7 +73,7 @@ export default function HomePage() {
               {"// FEATURED"}
             </h2>
             <p className="mt-2 text-sm text-gray-500">
-              Handpicked classics for your collection
+              Miyoo handhelds and more
             </p>
           </div>
           <Link
@@ -98,51 +94,45 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Brands Section */}
+      {/* Miyoo ecosystem section */}
       <section className="border-t-2 border-retro-border bg-retro-surface">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <h2 className="mb-8 text-center font-pixel text-lg text-neon-cyan glow-text sm:text-xl">
-            {"// BROWSE BY BRAND"}
-          </h2>
-          <div className="mx-auto max-w-md">
-            <Suspense fallback={null}>
-              <BrandSidebar />
-            </Suspense>
+          <div className="grid gap-8 md:grid-cols-2">
+            <div className="rounded-lg border-2 border-neon-cyan/20 bg-retro-card p-8">
+              <h3 className="font-pixel text-sm text-neon-cyan glow-text">
+                MIYOO MINI PLUS
+              </h3>
+              <p className="mt-3 text-xs leading-relaxed text-gray-400">
+                3.5-inch IPS display, Allwinner A33 quad-core, 256MB RAM.
+                Supports PS1, GBA, SNES, NES, arcade and 20+ retro platforms.
+                Available in Black, Gray, Purple and White.
+              </p>
+              <Link
+                href="/products/miyoo-mini-plus"
+                className="mt-4 inline-block font-pixel text-[10px] text-neon-pink transition-colors hover:text-neon-cyan"
+              >
+                VIEW DETAILS ▶
+              </Link>
+            </div>
+            <div className="rounded-lg border-2 border-neon-pink/20 bg-retro-card p-8">
+              <h3 className="font-pixel text-sm text-neon-pink glow-text-pink">
+                MIYOO FLIP
+              </h3>
+              <p className="mt-3 text-xs leading-relaxed text-gray-400">
+                Clamshell design with a familiar retro form factor.
+                Compact, portable, and packed with emulation power.
+                The perfect companion for retro gaming on the move.
+              </p>
+              <Link
+                href="/products/miyoo-flip"
+                className="mt-4 inline-block font-pixel text-[10px] text-neon-cyan transition-colors hover:text-neon-pink"
+              >
+                VIEW DETAILS ▶
+              </Link>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Categories - if any */}
-      {categories.length > 0 && (
-        <section className="border-t-2 border-retro-border bg-retro-surface">
-          <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-            <h2 className="mb-12 font-pixel text-lg text-neon-cyan glow-text sm:text-xl">
-              {"// CATEGORIES"}
-            </h2>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {categories.map((category) => (
-                <Link
-                  key={category.id}
-                  href={`/products?category_id=${category.id}`}
-                  className="card group relative flex min-h-[200px] flex-col justify-end overflow-hidden bg-retro-card p-8"
-                >
-                  <h3 className="font-pixel text-sm text-gray-200 transition-colors group-hover:text-neon-cyan">
-                    {category.name}
-                  </h3>
-                  {category.description && (
-                    <p className="mt-2 text-xs text-gray-500 line-clamp-2">
-                      {category.description}
-                    </p>
-                  )}
-                  <span className="mt-4 font-pixel text-[10px] text-gray-600 group-hover:text-neon-cyan">
-                    BROWSE ▶
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Bottom CTA */}
       <section className="border-t-2 border-retro-border">

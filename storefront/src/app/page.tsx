@@ -132,15 +132,22 @@ export default function HomePage() {
       </section>
 
       {/* Australian Seller - Trust */}
-      <section className="border-t-2 border-retro-border">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden border-t-2 border-retro-border">
+        {/* Australian flag glow overlay */}
+        <div className="absolute -left-32 -top-32 h-64 w-64 rounded-full bg-aussie-blue/10 blur-[100px]" />
+        <div className="absolute -bottom-32 -right-32 h-64 w-64 rounded-full bg-aussie-red/10 blur-[100px]" />
+
+        <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-xl text-center">
-            <div className="mb-3 inline-block border-2 border-neon-yellow px-3 py-1">
-              <span className="font-pixel text-[8px] uppercase tracking-widest text-neon-yellow">
+            {/* Aussie badge with flag colors */}
+            <div className="mb-3 inline-flex items-center gap-1.5 overflow-hidden rounded-sm border-2 border-aussie-blue px-3 py-1">
+              <span className="h-2 w-2 rounded-full bg-aussie-red" />
+              <span className="font-pixel text-[8px] uppercase tracking-widest text-aussie-blue">
                 AUSSIE OWNED
               </span>
+              <span className="h-2 w-2 rounded-full bg-aussie-red" />
             </div>
-            <h2 className="font-pixel text-lg text-neon-cyan glow-text sm:text-xl">
+            <h2 className="font-pixel text-lg text-white sm:text-xl">
               {"// SHOP LOCAL"}
             </h2>
             <p className="mt-3 text-sm leading-6 text-gray-400">
@@ -150,27 +157,34 @@ export default function HomePage() {
           </div>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            <div className="rounded-lg border border-retro-border bg-retro-card p-6 text-center">
-              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-neon-cyan/30">
-                <span className="font-pixel text-sm text-neon-cyan">AU</span>
+            <div className="rounded-lg border border-aussie-blue/20 bg-retro-card/80 p-6 text-center backdrop-blur-sm">
+              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border-2 border-aussie-blue/40">
+                <span className="font-pixel text-xs font-bold text-aussie-blue">AU</span>
               </div>
-              <h3 className="font-pixel text-[10px] uppercase text-gray-200">Australian Seller</h3>
+              <h3 className="font-pixel text-[10px] uppercase text-white">Australian Seller</h3>
               <p className="mt-1 text-xs text-gray-500">Registered business, local stock, shipped from Australia.</p>
             </div>
-            <div className="rounded-lg border border-retro-border bg-retro-card p-6 text-center">
-              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-neon-pink/30">
-                <span className="font-pixel text-sm text-neon-pink">$</span>
+            <div className="rounded-lg border border-aussie-red/20 bg-retro-card/80 p-6 text-center backdrop-blur-sm">
+              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border-2 border-aussie-red/40">
+                <span className="font-pixel text-xs font-bold text-aussie-red">$</span>
               </div>
-              <h3 className="font-pixel text-[10px] uppercase text-gray-200">AUD Pricing</h3>
+              <h3 className="font-pixel text-[10px] uppercase text-white">AUD Pricing</h3>
               <p className="mt-1 text-xs text-gray-500">All prices in Australian dollars. No currency conversion guesswork.</p>
             </div>
-            <div className="rounded-lg border border-retro-border bg-retro-card p-6 text-center">
-              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-neon-yellow/30">
-                <span className="font-pixel text-sm text-neon-yellow">✓</span>
+            <div className="rounded-lg border border-white/10 bg-retro-card/80 p-6 text-center backdrop-blur-sm">
+              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/20">
+                <span className="font-pixel text-xs font-bold text-white">✓</span>
               </div>
-              <h3 className="font-pixel text-[10px] uppercase text-gray-200">Secure & Trusted</h3>
+              <h3 className="font-pixel text-[10px] uppercase text-white">Secure & Trusted</h3>
               <p className="mt-1 text-xs text-gray-500">30-day returns, fast dispatch, and real support from a real person.</p>
             </div>
+          </div>
+
+          {/* Subtle flag stripe bar */}
+          <div className="mx-auto mt-8 flex h-1 max-w-xs overflow-hidden rounded-full">
+            <div className="h-full w-1/3 bg-aussie-blue" />
+            <div className="h-full w-1/3 bg-white/60" />
+            <div className="h-full w-1/3 bg-aussie-red" />
           </div>
         </div>
       </section>

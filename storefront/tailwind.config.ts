@@ -23,6 +23,11 @@ const config: Config = {
           green: "#39ff14",
           purple: "#b44dff",
         },
+        aussie: {
+          red: "#ff2436",
+          blue: "#0055c4",
+          navy: "#0a1545",
+        },
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],

@@ -51,42 +51,46 @@ export default function VariantSelector({
 
             {isColor && images && images.length > 0 ? (
               <div className="flex flex-wrap gap-3">
-                {option.values
-                  .filter((v) => availableValues.includes(v.value))
-                  .map((v) => {
-                    const swatchUrl = findSwatchImage(images, v.value)
-                    const isSelected = selected[option.id] === v.value
-                    return (
-                      <button
-                        key={v.id || v.value}
-                        type="button"
-                        onClick={() => onSelect(option.id, v.value)}
-                        className={`group relative h-16 w-16 overflow-hidden rounded-lg border-2 transition-all ${
-                          isSelected
-                            ? "border-neon-cyan shadow-[0_0_10px_rgba(0,229,255,0.4)] scale-110"
-                            : "border-retro-border hover:border-neon-cyan/60 hover:scale-105"
-                        }`}
-                        title={v.value}
-                      >
-                        {swatchUrl ? (
-                          <img
-                            src={swatchUrl}
-                            alt={v.value}
-                            className="h-full w-full object-cover"
-                          />
-                        ) : (
-                          <div className="flex h-full w-full items-center justify-center bg-retro-surface text-[8px] font-pixel uppercase text-gray-500">
-                            {v.value}
-                          </div>
-                        )}
-                        <span className={`absolute -bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap font-pixel text-[8px] uppercase transition-opacity ${
-                          isSelected ? "text-neon-cyan opacity-100" : "text-gray-500 opacity-0 group-hover:opacity-100"
-                        }`}>
-                          {v.value}
-                        </span>
-                      </button>
-                    )
-                  })}
+                {Array.from(
+                  new Set(
+                    option.values
+                      .filter((v) => availableValues.includes(v.value))
+                      .map((v) => v.value)
+                  )
+                ).map((colorValue) => {
+                  const swatchUrl = findSwatchImage(images, colorValue)
+                  const isSelected = selected[option.id] === colorValue
+                  return (
+                    <button
+                      key={colorValue}
+                      type="button"
+                      onClick={() => onSelect(option.id, colorValue)}
+                      className={`group relative h-16 w-16 overflow-hidden rounded-lg border-2 transition-all ${
+                        isSelected
+                          ? "border-neon-cyan shadow-[0_0_10px_rgba(0,229,255,0.4)] scale-110"
+                          : "border-retro-border hover:border-neon-cyan/60 hover:scale-105"
+                      }`}
+                      title={colorValue}
+                    >
+                      {swatchUrl ? (
+                        <img
+                          src={swatchUrl}
+                          alt={colorValue}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-retro-surface text-[8px] font-pixel uppercase text-gray-500">
+                          {colorValue}
+                        </div>
+                      )}
+                      <span className={`absolute -bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap font-pixel text-[8px] uppercase transition-opacity ${
+                        isSelected ? "text-neon-cyan opacity-100" : "text-gray-500 opacity-0 group-hover:opacity-100"
+                      }`}>
+                        {colorValue}
+                      </span>
+                    </button>
+                  )
+                })}
               </div>
             ) : (
               <select
